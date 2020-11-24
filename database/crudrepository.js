@@ -4,17 +4,19 @@ const connectionFunctions = {
   findAll: () => {
     function findAll(resolve, reject) {
       pool.getConnection((err, connection) => {
-        if (err) reject("Can't connect");
-        connection.query("SELECT * FROM task", (err, task) => {
-          if (err) reject();
-          const temp = JSON.stringify(task);
-          const result = JSON.parse(temp);
+        if (err) reject();
+        connection.query("SELECT * FROM task", (err, tasks) => {
+          if (err) {
+            reject();
+          }
+          const temp = JSON.stringify(tasks);
+          const olio = JSON.parse(temp);
           connection.release();
-          resolve(result);
+          resolve(olio);
         });
       });
-      return new Promise(findAll);
     }
+    return new Promise(findAll);
   },
 };
 module.exports = connectionFunctions;
