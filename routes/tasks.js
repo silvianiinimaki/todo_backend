@@ -1,5 +1,6 @@
 const connection = require("../database/crudrepository.js");
 const express = require("express");
+const connectionFunctions = require("../database/crudrepository.js");
 const tasks = express.Router();
 
 const main = async () => {
@@ -9,6 +10,10 @@ const main = async () => {
   tasks.post("/", async (req, res) => {
     const loc = req.body;
     connection.save(loc).then(() => res.send("saved location"));
+  });
+  tasks.get(`/:urlId([1-9]+)`, (req, res) => {
+    const urlId = Number(req.params.urlId);
+    connection.findById(urlId).then((data) => res.send(data));
   });
 };
 main();

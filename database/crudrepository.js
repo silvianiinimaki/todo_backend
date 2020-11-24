@@ -18,6 +18,25 @@ const connectionFunctions = {
     }
     return new Promise(findAll);
   },
+  findById: (id) => {
+    function findById(resolve, reject) {
+      pool.getConnection((err, connection) => {
+        if (err) reject(err);
+        connection.query(
+          "SELECT * FROM task WHERE user_id = ?",
+          [id],
+          (err, tasks) => {
+            if (err) reject(err);
+            const temp = JSON.stringify(tasks);
+            const olio = JSON.parse(temp);
+            connection.release();
+            resolve(olio);
+          }
+        );
+      });
+    }
+    return new Promise(findById);
+  },
   save: (task) => {
     function save(resolve, reject) {
       try {
