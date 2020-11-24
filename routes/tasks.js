@@ -10,11 +10,10 @@ const main = async () => {
     const task = req.body;
     connection.save(task).then(() => res.send("task saved"));
   });
-  /*
   tasks.get(`/:urlId([1-9]+)`, async (req, res) => {
     const urlId = Number(req.params.urlId);
     connection.findById(urlId).then((data) => res.send(data));
-  }); */
+  });
 };
 main();
 module.exports = tasks;

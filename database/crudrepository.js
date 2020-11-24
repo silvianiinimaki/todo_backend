@@ -18,7 +18,7 @@ const connectionFunctions = {
     }
     return new Promise(findAll);
   },
-  /*
+
   findById: (id) => {
     function findById(resolve, reject) {
       pool.getConnection((err, connection) => {
@@ -36,8 +36,8 @@ const connectionFunctions = {
         );
       });
     }
-    return new Promise(findById); 
-  },  */
+    return new Promise(findById);
+  },
   save: (task) => {
     function save(resolve, reject) {
       try {
