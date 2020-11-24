@@ -7,8 +7,8 @@ const main = async () => {
     connection.findAll().then((data) => res.send(data));
   });
   tasks.post("/", async (req, res) => {
-    const loc = req.body;
-    connection.save(loc).then(() => res.send("task saved"));
+    const task = req.body;
+    connection.save(task).then(() => res.send("task saved"));
   });
   tasks.get(`/:urlId([1-9]+)`, async (req, res) => {
     const urlId = Number(req.params.urlId);
