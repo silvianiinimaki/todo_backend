@@ -1,11 +1,24 @@
 const express = require("express");
 const app = express();
-var cors = require("cors");
+const cors = require("cors");
 app.use(cors());
 
-const db = [{ name: "tiina" }, { name: "jack" }];
+const db = [
+  {
+    id: 1,
+    title: "Make an app",
+    description: "ToDo-app",
+    deadline: "2020-12-20",
+    tag: "project",
+    rating: 5,
+    checked: false,
+    creation_date: 2020 - 11 - 24,
+    last_edited: 2020 - 11 - 24,
+    user_id: 3,
+  },
+];
 
-app.get("/names", (req, res) => {
+app.get("/", (req, res) => {
   res.send(db);
 });
 
