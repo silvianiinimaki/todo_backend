@@ -6,7 +6,7 @@ const main = async () => {
   tasks.get("/", (req, res) => {
     connection.findAll().then((data) => res.send(data));
   });
-  tasks.post("/", async (req, res) => {
+  tasks.post("/user/:userId([1-9]+)", async (req, res) => {
     const task = req.body;
     connection.save(task).then(() => res.send("task saved"));
   });
@@ -14,13 +14,11 @@ const main = async () => {
     const userId = Number(req.params.userId);
     connection.findById(userId).then((data) => res.send(data));
   });
-  /* EDITING TASK IN PROGRESS
-  tasks.get(`/user/:userId([1-9]+)/post/:postId([1-9]+)`, async (req, res) => {
-    const postId = Number(req.params.postId);
+  tasks.post(`/user/:userId([1-9]+)/task/:taskId([1-9]+)`, async (req, res) => {
+    const taskId = Number(req.params.taskId);
     const task = req.body;
-    connection.edit(task, postId).then(() => res.send("task saved"));
+    connection.edit(task, taskId).then(() => res.send("task saved"));
   });
-  */
 };
 main();
 module.exports = tasks;

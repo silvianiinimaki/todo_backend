@@ -55,7 +55,6 @@ const connectionFunctions = {
     }
     return new Promise(save);
   },
-  /* EDITING TASK IN PROGRESS
   edit: (task, id) => {
     function edit(resolve, reject) {
       try {
@@ -76,6 +75,6 @@ const connectionFunctions = {
       }
     }
     return new Promise(edit);
-  }, */
+  },
 };
 module.exports = connectionFunctions;
