@@ -10,10 +10,17 @@ const main = async () => {
     const task = req.body;
     connection.save(task).then(() => res.send("task saved"));
   });
-  tasks.get(`/:urlId([1-9]+)`, async (req, res) => {
-    const urlId = Number(req.params.urlId);
-    connection.findById(urlId).then((data) => res.send(data));
+  tasks.get(`/user/:userId([1-9]+)`, async (req, res) => {
+    const userId = Number(req.params.userId);
+    connection.findById(userId).then((data) => res.send(data));
   });
+  /* EDITING TASK IN PROGRESS
+  tasks.get(`/user/:userId([1-9]+)/post/:postId([1-9]+)`, async (req, res) => {
+    const postId = Number(req.params.postId);
+    const task = req.body;
+    connection.edit(task, postId).then(() => res.send("task saved"));
+  });
+  */
 };
 main();
 module.exports = tasks;

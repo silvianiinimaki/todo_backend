@@ -55,5 +55,27 @@ const connectionFunctions = {
     }
     return new Promise(save);
   },
+  /* EDITING TASK IN PROGRESS
+  edit: (task, id) => {
+    function edit(resolve, reject) {
+      try {
+        pool.getConnection((err, connection) => {
+          if (err) reject(err);
+          connection.query(
+            "UPDATE task SET ? WHERE id = ?",
+            [task, id],
+            (err, task) => {
+              if (err) reject(err);
+              connection.release();
+              resolve();
+            }
+          );
+        });
+      } catch (err) {
+        reject(err);
+      }
+    }
+    return new Promise(edit);
+  }, */
 };
 module.exports = connectionFunctions;
