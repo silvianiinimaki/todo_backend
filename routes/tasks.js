@@ -19,6 +19,12 @@ const main = async () => {
     const task = req.body;
     connection.edit(task, taskId).then(() => res.send("task saved"));
   });
+  tasks.delete(`/user/:userId([1-9]+)`, async (req, res) => {
+    const userId = Number(req.params.userId);
+    connection
+      .deleteDoneTasks(userId)
+      .then(() => res.send("deleted all tasks that are marked done"));
+  });
 };
 main();
 module.exports = tasks;
