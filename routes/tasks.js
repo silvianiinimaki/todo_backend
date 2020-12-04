@@ -3,7 +3,7 @@ const express = require("express");
 const tasks = express.Router();
 
 const main = async () => {
-  tasks.get("/", (req, res) => {
+  tasks.get("/api", (req, res) => {
     connection.findAll().then((data) => res.send(data));
   });
   tasks.post("/user/:userId([1-9]+)", async (req, res) => {
