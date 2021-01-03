@@ -54,20 +54,16 @@ const connectionFunctions = {
     }
     return new Promise(findById);
   },
-  save: (task, userId) => {
+  save: (task) => {
     function save(resolve, reject) {
       try {
         pool.getConnection((err, connection) => {
           if (err) reject(err);
-          connection.query(
-            "INSERT INTO task SET ? WHERE user_id = ?",
-            [task, userId],
-            (err, task) => {
-              if (err) reject(err);
-              connection.release();
-              resolve();
-            }
-          );
+          connection.query("INSERT INTO task SET ?", [task], (err) => {
+            if (err) reject(err);
+            connection.release();
+            resolve();
+          });
         });
       } catch (err) {
         reject(err);
@@ -75,26 +71,7 @@ const connectionFunctions = {
     }
     return new Promise(save);
   },
-  check: (taskId, checked) => {
-    function check(resolve, reject) {
-      try {
-        pool.getConnection((err, connection) => {
-          if (err) reject (err);
-          connection.query(
-            "UPDATE task SET checked = ? WHERE id = ?",
-            [checked, taskId], (err) {
-              if (err) reject(err);
-              connection.release();
-              resolve();
-            }
-          )
-        });
-      } catch (err)  {
-        reject(err)
-      }
-    }
-    return new Promise(check)
-  },
+
   edit: (task, id) => {
     function edit(resolve, reject) {
       try {
