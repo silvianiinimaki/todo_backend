@@ -24,7 +24,7 @@ const main = async () => {
     connection.edit(task, taskId).then(() => res.send("task saved"));
   });
   // Delete all done tasks
-  tasks.delete(`/user/:userId([1-9]+)`, async (req, res) => {
+  tasks.delete(`/`, async (req, res) => {
     const userId = Number(req.params.userId);
     connection
       .deleteDoneTasks(userId)
