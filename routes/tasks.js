@@ -7,8 +7,14 @@ const main = async () => {
     connection.findAll().then((data) => res.send(data));
   });
   tasks.post("/user/:userId([1-9]+)", async (req, res) => {
+    const userId = Number(req.params.userId);
     const task = req.body;
-    connection.save(task).then(() => res.send("task saved"));
+    connection.save(task, userId).then(() => res.send("task saved"));
+  });
+  tasks.post("/:taskId([1-9]+)", async (req, res) => {
+    const taskId = Number(req.params.taskId);
+    const checked = req.body;
+    connection.check(taskId, checked).then(() => res.send("Task checked"));
   });
   tasks.get(`/user/:userId([1-9]+)`, async (req, res) => {
     const userId = Number(req.params.userId);
