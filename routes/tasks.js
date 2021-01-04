@@ -25,9 +25,8 @@ const main = async () => {
   });
   // Delete all done tasks
   tasks.delete(`/`, async (req, res) => {
-    const userId = Number(req.params.userId);
     connection
-      .deleteDoneTasks(userId)
+      .deleteDoneTasks()
       .then(() => res.send("deleted all tasks that are marked done"));
   });
 };
