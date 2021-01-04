@@ -22,15 +22,11 @@ const connectionFunctions = {
     function deleteDoneTasks(resolve, reject) {
       pool.getConnection((err, connection) => {
         if (err) reject(err);
-        connection.query(
-          "DELETE FROM task WHERE checked != 0 AND user_id = ?",
-          [userId],
-          (err) => {
-            if (err) reject(err);
-            connection.release();
-            resolve();
-          }
-        );
+        connection.query("DELETE FROM task WHERE checked != 0", (err) => {
+          if (err) reject(err);
+          connection.release();
+          resolve();
+        });
       });
     }
     return new Promise(deleteDoneTasks);
