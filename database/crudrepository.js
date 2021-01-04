@@ -20,7 +20,7 @@ const connectionFunctions = {
     return new Promise(findAll);
   },
   // Delete all tasks that are checked
-  deleteDoneTasks: (userId) => {
+  deleteDoneTasks: () => {
     function deleteDoneTasks(resolve, reject) {
       pool.getConnection((err, connection) => {
         if (err) reject(err);
