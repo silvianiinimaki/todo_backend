@@ -18,7 +18,7 @@ const main = async () => {
     connection.findById(userId).then((data) => res.send(data));
   });
   // Edit task
-  tasks.post(`/task/:taskId([1-9]+)/`, async (req, res) => {
+  tasks.post(`/task/:taskId([1-9]+)`, async (req, res) => {
     const taskId = Number(req.params.taskId);
     const column = req.body;
     connection.edit(column, taskId).then(() => res.send("task saved"));
