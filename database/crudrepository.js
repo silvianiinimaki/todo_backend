@@ -1,6 +1,7 @@
 const pool = require("./config.js");
 
 const connectionFunctions = {
+  // Find all tasks
   findAll: () => {
     function findAll(resolve, reject) {
       pool.getConnection((err, connection) => {
@@ -18,22 +19,21 @@ const connectionFunctions = {
     }
     return new Promise(findAll);
   },
+  // Delete all tasks that are checked
   deleteDoneTasks: (userId) => {
     function deleteDoneTasks(resolve, reject) {
       pool.getConnection((err, connection) => {
         if (err) reject(err);
-        connection.query(
-          "DELETE FROM task WHERE checked != 0",
-          (err) => {
-            if (err) reject(err);
-            connection.release();
-            resolve();
-          }
-        );
+        connection.query("DELETE FROM task WHERE checked != 0", (err) => {
+          if (err) reject(err);
+          connection.release();
+          resolve();
+        });
       });
     }
     return new Promise(deleteDoneTasks);
   },
+  // Find tasks by id
   findById: (id) => {
     function findById(resolve, reject) {
       pool.getConnection((err, connection) => {
@@ -53,6 +53,7 @@ const connectionFunctions = {
     }
     return new Promise(findById);
   },
+  // Save a task
   save: (task) => {
     function save(resolve, reject) {
       try {
@@ -70,15 +71,15 @@ const connectionFunctions = {
     }
     return new Promise(save);
   },
-
-  edit: (task, id) => {
+  // Edit task. Give a column (for example checked: 0) and tasks id.
+  edit: (column, id) => {
     function edit(resolve, reject) {
       try {
         pool.getConnection((err, connection) => {
           if (err) reject(err);
           connection.query(
             "UPDATE task SET ? WHERE id = ?",
-            [task, id],
+            [column, id],
             (err) => {
               if (err) reject(err);
               connection.release();

@@ -20,8 +20,8 @@ const main = async () => {
   // Edit task
   tasks.post(`/task/:taskId([1-9]+)/`, async (req, res) => {
     const taskId = Number(req.params.taskId);
-    const task = req.body;
-    connection.edit(task, taskId).then(() => res.send("task saved"));
+    const column = req.body;
+    connection.edit(column, taskId).then(() => res.send("task saved"));
   });
   // Delete all done tasks
   tasks.delete(`/`, async (req, res) => {
