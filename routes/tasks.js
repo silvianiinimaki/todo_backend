@@ -13,12 +13,12 @@ const main = async () => {
     connection.save(task).then(() => res.send("task saved"));
   });
   // Get tasks by userId
-  tasks.get(`/user/:userId([1-9]+)`, async (req, res) => {
+  tasks.get(`/user/:userId([0-9]+)`, async (req, res) => {
     const userId = Number(req.params.userId);
     connection.findById(userId).then((data) => res.send(data));
   });
   // Edit task
-  tasks.post(`/task/:taskId([1-9]+)`, async (req, res) => {
+  tasks.post(`/task/:taskId([0-9]+)`, async (req, res) => {
     const taskId = Number(req.params.taskId);
     const column = req.body;
     connection.edit(column, taskId).then(() => res.send("task saved"));
