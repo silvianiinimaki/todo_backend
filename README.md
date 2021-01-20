@@ -1,4 +1,4 @@
-# ToDo-app frontend repository
+# ToDo-app backend repository
 
 Implemented with node.js, MySQL and react.js.
 You can find the app from https://todo-tiko.herokuapp.com/. </br>
